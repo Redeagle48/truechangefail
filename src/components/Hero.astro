@@ -1,34 +1,34 @@
 ---
-// Hero — placeholder content. Edita à vontade.
-const meta = {
-  edition: 'Edição I',
-  year: '2026',
-  tag: 'Manifesto v1.0',
-};
+import { getT, type Locale, defaultLocale } from '../i18n/ui';
+
+export interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = getT(lang).hero;
 ---
 <header class="hero">
   <div class="shell">
     <div class="hero__meta reveal reveal-1">
-      <span>{meta.edition} · {meta.year}</span>
-      <span>{meta.tag}</span>
+      <span>{t.edition} · {t.year}</span>
+      <span>{t.tag}</span>
     </div>
 
     <h1 class="hero__title reveal reveal-2">
-      OUT<br />
-      <span class="strike">horse</span>
+      TRUE<br />
+      <span class="strike">change</span><br />
+      FAIL
     </h1>
 
     <p class="hero__sub reveal reveal-3">
-      <!-- PLACEHOLDER: o teu pitch satírico em uma ou duas frases. -->
-      O manifesto definitivo para entregar projetos em OutSystems
-      à pressa, sem testes, sem refactor e — sobretudo —
-      sem remorsos. Lorem ipsum, mas com mais <em>technical debt</em>.
+      {t.sub}
     </p>
 
     <div class="hero__stamp reveal reveal-4" aria-hidden="true">
       <div>
-        <span>NÃO</span>
-        CERTIFICADO
+        <span>{t.stampLine1}</span>
+        {t.stampLine2}
       </div>
     </div>
   </div>

@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import Manifesto from '../../components/Manifesto.astro';
+import Levels from '../../components/Levels.astro';
+import Submit from '../../components/Submit.astro';
+import Footer from '../../components/Footer.astro';
+import LangSwitcher from '../../components/LangSwitcher.astro';
+
+const lang = 'en' as const;
+---
+<Layout lang={lang}>
+  <LangSwitcher lang={lang} />
+  <main id="top">
+    <Hero lang={lang} />
+    <Marquee lang={lang} />
+    <Manifesto lang={lang} />
+    <Levels lang={lang} />
+    <Submit lang={lang} />
+    <Footer lang={lang} />
+  </main>
+</Layout>

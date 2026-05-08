@@ -1,0 +1,47 @@
+# TrueChangeFail (TCF)
+
+> Manifesto satírico sobre desenvolvimento OutSystems à pressa. 8 axiomas que documentam práticas observadas em fábricas de software OutSystems quando o prazo aperta, o backlog cresce e o `Refresh All` é a primeira acção do dia. Inspirado no GoHorse / eXtreme Go Horse (XGH), dedicado ao ecossistema OutSystems (Service Studio, TrueChange, AI Mentor, Architecture Dashboard, ODC, Aurora PostgreSQL).
+
+A satirical manifesto on rushed OutSystems development. 8 axioms documenting real anti-patterns observed in OutSystems factories. Inspired by GoHorse (XGH), dedicated to the OutSystems ecosystem.
+
+The site is **non-commercial**, **not affiliated with OutSystems**, and intended as humour grounded in real forum threads, Architecture Dashboard findings, and AI Mentor warnings that get ignored.
+
+## Axiomas (PT)
+
+- [Axioma 1 — Architecture Canvas tem 4 camadas, o TCF usa uma e meia](https://redeagle48.github.io/truechangefail/#axiom-1): End-User com tudo dentro; Foundation só para Static Entities; Core não existe; Discovery só em apresentação ao cliente.
+- [Axioma 2 — Aggregate dentro de For Each é o batimento cardíaco do TCF](https://redeagle48.github.io/truechangefail/#axiom-2): O problema do N+1 não é um bug, é uma escolha estética.
+- [Axioma 3 — Refresh References. Republish. Repeat.](https://redeagle48.github.io/truechangefail/#axiom-3): Outdated Producer → Refresh All → Publish, em loop. O ciclo é o método.
+- [Axioma 4 — Quando o IN operator não existe, o TCF concatena strings com #](https://redeagle48.github.io/truechangefail/#axiom-4): A Idea com 500+ likes desde 2015 nunca vai sair; entretanto, `Index("#"+joined+"#", "#"+id+"#") <> -1`.
+- [Axioma 5 — Site Property é a variável global do TCF](https://redeagle48.github.io/truechangefail/#axiom-5): Configuração, feature flag, estado entre Timer e Screen — tudo Site Property gerido por quem tem acesso ao Service Center.
+- [Axioma 6 — TrueChange tem três cores; AI Mentor faz sugestões; o TCF fecha a aba](https://redeagle48.github.io/truechangefail/#axiom-6): Vermelho não publica, amarelo publica. 247 warnings amarelos são parte do tema.
+- [Axioma 7 — Toda Server Action grande do TCF termina em FinalResult2](https://redeagle48.github.io/truechangefail/#axiom-7): Aux, Aux2, Temp_OK, Result, FinalResult, FinalResult_REAL, FinalResult_USE_THIS_ONE.
+- [Axioma 8 — Migração para ODC: tudo na sprint 1, e era isso](https://redeagle48.github.io/truechangefail/#axiom-8): Estimativa "duas semanas". Realidade: 9 meses, duas demissões, post-mortem de 47 páginas.
+
+## Axioms (EN)
+
+- [Axiom 1 — The Architecture Canvas has 4 layers, TCF uses one and a half](https://redeagle48.github.io/truechangefail/en/#axiom-1)
+- [Axiom 2 — Aggregate inside For Each is the heartbeat of TCF](https://redeagle48.github.io/truechangefail/en/#axiom-2)
+- [Axiom 3 — Refresh References. Republish. Repeat.](https://redeagle48.github.io/truechangefail/en/#axiom-3)
+- [Axiom 4 — When the IN operator does not exist, TCF concatenates strings with #](https://redeagle48.github.io/truechangefail/en/#axiom-4)
+- [Axiom 5 — Site Property is the global variable of TCF](https://redeagle48.github.io/truechangefail/en/#axiom-5)
+- [Axiom 6 — TrueChange has three colours; AI Mentor makes suggestions; TCF closes the tab](https://redeagle48.github.io/truechangefail/en/#axiom-6)
+- [Axiom 7 — Every large Server Action in TCF ends in FinalResult2](https://redeagle48.github.io/truechangefail/en/#axiom-7)
+- [Axiom 8 — ODC migration: everything in sprint 1, and that was it](https://redeagle48.github.io/truechangefail/en/#axiom-8)
+
+## Línguas / Languages
+
+- [Português (canonical)](https://redeagle48.github.io/truechangefail/)
+- [English](https://redeagle48.github.io/truechangefail/en/)
+
+## Manifesto completo / Full text
+
+- [Versão markdown integral](https://redeagle48.github.io/truechangefail/llms-full.txt): Texto completo dos 8 axiomas em PT e EN, otimizado para ingestão por LLMs.
+
+## Contribuir / Contribute
+
+- [GitHub repo](https://github.com/Redeagle48/truechangefail): Source code (Astro + GitHub Pages).
+- [Submit a new axiom](https://github.com/Redeagle48/truechangefail/issues/new?template=new-axiom.yml): Issue template estruturado para propor axiomas.
+
+## Disclaimer
+
+Sátira. Tudo o que está descrito é, na vida real, evitável: ler os warnings do TrueChange, respeitar o Architecture Canvas, usar o AI Mentor e o Discovery, evitar 1-Click Publish para PRD, considerar SQL quando o Aggregate sofre, e migrar para ODC com plano e não com fé.

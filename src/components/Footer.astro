@@ -1,12 +1,20 @@
 ---
+import { getT, type Locale, defaultLocale } from '../i18n/ui';
+
+export interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = getT(lang).footer;
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="shell">
     <div class="footer__row">
-      <div class="footer__brand">OUTHORSE</div>
-      <div>{year} · uma sátira · sem afiliação à OutSystems</div>
-      <div><a href="#top">topo ↑</a></div>
+      <div class="footer__brand">truechange.fail</div>
+      <div>{year} · {t.tagline}</div>
+      <div><a href="#top">{t.backToTop}</a></div>
     </div>
   </div>
 </footer>

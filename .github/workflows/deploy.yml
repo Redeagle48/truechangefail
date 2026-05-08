@@ -18,6 +18,8 @@ jobs:
       - uses: withastro/action@v3
         with:
           node-version: 22
+        env:
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
 
   deploy:
     needs: build

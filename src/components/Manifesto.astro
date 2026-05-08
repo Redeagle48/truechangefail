@@ -1,46 +1,34 @@
 ---
-// PLACEHOLDER: substitui pelos teus axiomas. Adiciona ou remove à vontade.
-const axioms = [
-  {
-    title: 'Se compila, está em produção',
-    body: 'Ambientes de teste são para quem tem tempo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
-    title: 'Hardcode é mais rápido',
-    body: 'Site Properties? Settings? Não. String literal direto na action. Ut enim ad minim veniam.',
-  },
-  {
-    title: 'Aggregates infinitos',
-    body: 'Filtros? Joins? Indexes? Carrega tudo e filtra no client-side. Duis aute irure dolor.',
-  },
-  {
-    title: 'On Initialize manda',
-    body: 'Tudo vai aqui. Lógica de negócio, queries, hacks visuais. Excepteur sint occaecat cupidatat.',
-  },
-  {
-    title: 'Naming é overrated',
-    body: 'Action1, Action2, Aux_Final_v3_DEFINITIVO. Sed do eiusmod tempor incididunt ut labore.',
-  },
-  {
-    title: 'Testes são para quem duvida',
-    body: 'Confiança é a melhor metodologia. Quis nostrud exercitation ullamco laboris nisi ut aliquip.',
-  },
-];
+import { getT, type Locale, defaultLocale } from '../i18n/ui';
+
+export interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = getT(lang).manifesto;
 ---
 <section class="manifesto">
   <div class="shell">
     <div class="manifesto__head">
-      <h2>Os axiomas</h2>
-      <small>{axioms.length} mandamentos · ler em voz alta</small>
+      <h2>{t.heading}</h2>
+      <small>{t.axioms.length} {t.countSuffix}</small>
     </div>
 
     <ol class="axioms">
-      {axioms.map((a) => (
-        <li class="axiom">
-          <h3 class="axiom__title">{a.title}</h3>
-          <p class="axiom__body">{a.body}</p>
-        </li>
-      ))}
+      {t.axioms.map((a, idx) => {
+        const id = `axiom-${idx + 1}`;
+        return (
+          <li class="axiom" id={id}>
+            <h3 class="axiom__title">
+              <a class="axiom__anchor" href={`#${id}`} aria-label={`Link to ${a.title}`}>
+                {a.title}
+              </a>
+            </h3>
+            <p class="axiom__body">{a.body}</p>
+          </li>
+        );
+      })}
     </ol>
   </div>
 </section>

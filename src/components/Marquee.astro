@@ -1,6 +1,12 @@
 ---
-// Marquee — frase repetida em loop. Troca o texto à vontade.
-const phrase = 'Atenção · Alto débito técnico · Boas práticas suspensas · Code review opcional';
+import { getT, type Locale, defaultLocale } from '../i18n/ui';
+
+export interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const phrase = getT(lang).marquee;
 const repeats = Array(8).fill(phrase);
 ---
 <div class="marquee" aria-hidden="true">

@@ -1,0 +1,57 @@
+# TrueChangeFail — robots.txt
+# Manifesto satírico, conteúdo público — todos os crawlers são bem-vindos.
+# Note: GitHub Pages serves this file at /truechangefail/robots.txt because the
+# project lives on a path-based deployment. Crawlers that look at the domain
+# root (redeagle48.github.io/robots.txt) will not see this. Move to a custom
+# domain (e.g. truechange.fail) to make this canonical.
+
+User-agent: *
+Allow: /
+
+# AI / LLM crawlers — explicitly allowed for citation in agent answers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+Sitemap: https://redeagle48.github.io/truechangefail/sitemap-index.xml

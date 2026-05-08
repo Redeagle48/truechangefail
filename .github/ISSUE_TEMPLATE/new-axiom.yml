@@ -1,0 +1,76 @@
+name: Novo axioma TCF / New TCF axiom
+description: Propõe um axioma para o manifesto TrueChangeFail / Propose an axiom for the manifesto
+title: "[Axioma] "
+labels: ["axioma", "triagem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por contribuíres com mais uma cicatriz para o manifesto.
+        Quanto mais concreta a referência OutSystems (TrueChange, AI Mentor, Architecture Dashboard, Service Center, Forge, LifeTime, ODC, Aurora, etc.), melhor.
+
+        Thanks for contributing another scar to the manifesto. The more concrete the OutSystems reference, the better.
+
+  - type: input
+    id: axiom-title
+    attributes:
+      label: Título do axioma · Axiom title
+      description: |
+        Curto, declarativo, com punch. Como os 8 atuais.
+        Short, declarative, with punch. Like the existing 8.
+      placeholder: 'Ex.: "Em PRD, o System.LogMessage é a única observabilidade do TCF."'
+    validations:
+      required: true
+
+  - type: textarea
+    id: axiom-body
+    attributes:
+      label: Descrição · Body
+      description: |
+        3 a 5 frases. Conta a cicatriz com referências concretas a comportamentos OutSystems.
+        3 to 5 sentences. Tell the scar with concrete OutSystems references.
+      placeholder: |
+        Sentry? Datadog? OpenTelemetry? Não. System.LogMessage e tail no Service Center.
+        Quando algo cai, abre-se o General Log, filtra-se por timestamp e reza-se.
+        APM Insights existe — só que ninguém comprou a licença.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidência (opcional) · Evidence (optional)
+      description: |
+        Link para fórum OutSystems / Forge / Idea / screenshot do TrueChange / finding do Architecture Dashboard.
+        Link to forum thread / Forge / Idea / TrueChange screenshot / Architecture Dashboard finding.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Como o TrueChange classifica isto? · How does TrueChange flag this?
+      options:
+        - "🟡 Warning — publica na mesma / publishes anyway"
+        - "🔴 Error — mas publicamos amanhã / but we publish tomorrow"
+        - "✅ AI Mentor diria 'good practice' / AI Mentor would say 'good practice'"
+        - "❓ Não sei, mas já vi em PRD / Don't know, but I've seen it in PROD"
+    validations:
+      required: false
+
+  - type: input
+    id: lang
+    attributes:
+      label: Idioma do texto submetido · Language of submission
+      description: PT / EN / both
+      placeholder: "PT"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmação
+      options:
+        - label: Este axioma é baseado em comportamento real (fórum, projeto, post-mortem) — não em ódio gratuito à OutSystems. / This axiom is based on real behaviour, not gratuitous OutSystems hate.
+          required: true
+        - label: Concordo que o conteúdo seja publicado sob o mesmo espírito de sátira do manifesto. / I agree the content can be published under the same satire spirit of the manifesto.
+          required: true

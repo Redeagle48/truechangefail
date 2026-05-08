@@ -242,6 +242,23 @@ section + section { border-top: var(--border-thick); }
   line-height: 1;
   margin-bottom: 0.7rem;
 }
+.axiom__anchor {
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+}
+.axiom__anchor:hover::before,
+.axiom__anchor:focus-visible::before {
+  content: '# ';
+  color: var(--blood);
+  margin-left: -0.85em;
+}
+.axiom:target {
+  box-shadow: 11px 11px 0 var(--blood);
+  outline: 3px solid var(--blood);
+  outline-offset: -3px;
+}
+html { scroll-behavior: smooth; }
 .axiom__body {
   font-size: 0.92rem;
   line-height: 1.55;
@@ -298,6 +315,102 @@ section + section { border-top: var(--border-thick); }
   font-size: 0.88rem;
   line-height: 1.55;
   opacity: 0.85;
+}
+
+/* =====================================================
+   SUBMIT (call to action — contribute an axiom)
+   ===================================================== */
+.submit {
+  background: var(--blood);
+  color: var(--paper);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+.submit h2 { color: var(--paper); }
+.submit__panel {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  background: var(--blood-deep);
+  border: 4px solid var(--paper);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: 10px 10px 0 var(--ink);
+}
+.submit__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+.submit__copy p {
+  max-width: 52ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 1rem 0 0;
+}
+.submit__hint {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+.submit__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.submit__btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--caution);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 1.1rem 1.5rem;
+  border: 3px solid var(--paper);
+  text-decoration: none;
+  box-shadow: 6px 6px 0 var(--paper);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.submit__btn:hover,
+.submit__btn:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--paper);
+  outline: none;
+}
+.submit__alt {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.85;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+  transition: opacity 0.15s ease;
+}
+.submit__alt:hover,
+.submit__alt:focus-visible { opacity: 1; outline: none; }
+.submit__note {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+}
+@media (max-width: 760px) {
+  .submit__panel {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
 }
 
 /* =====================================================

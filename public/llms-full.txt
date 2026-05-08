@@ -1,0 +1,115 @@
+# TrueChangeFail (TCF)
+
+> "Arrastou, publicou, era isso."
+
+**Manifesto · Edição OutSystems · v. 2026 · 8 axiomas**
+truechange.fail · não-oficial · 247 warnings 🟡 · 1 error 🔴 · *Published anyway* ✓
+
+Source URL: https://redeagle48.github.io/truechangefail/
+Repository: https://github.com/Redeagle48/truechangefail
+Author: Redeagle48
+Licence: satire — not affiliated with OutSystems
+Date published: 2026-05-08
+
+---
+
+## Introdução (PT)
+
+**TrueChangeFail (TCF)** é a denominação técnica para o conjunto de práticas observadas em fábricas de software OutSystems quando o prazo aperta, o backlog cresce e o `Refresh All` é a primeira acção do dia. O nome homenageia o painel de TrueChange do Service Studio — aquele com 247 warnings amarelos que ninguém lê — e a coluna invisível ao lado: a dos *fails* que publicaram na mesma.
+
+Os 8 axiomas a seguir são o que sobra depois de anos a arrastar widgets, fazer `Refresh All` três vezes seguidas, e descobrir que o operador `IN` não existe em Aggregates desde uma Idea de 2015 com mais de 500 likes que ninguém na OutSystems implementou.
+
+Cada axioma é uma cicatriz documentada: vem de tópico de fórum, finding do Architecture Dashboard, recomendação ignorada do AI Mentor, ou de Service Studio que crashou no `Combine and Merge` às 23h da véspera do go-live.
+
+## Os 8 Axiomas (PT)
+
+### Axioma 1 — O Architecture Canvas tem 4 camadas. O TCF usa uma e meia.
+
+End-User com tudo lá dentro: screens, blocks, server actions, entities, integrações REST. Foundation é onde vão as Static Entities que ninguém soube onde meter. Core é palavra que o TCF já leu mas não usa. O Discovery abre-se uma vez para ver o aranhol de setas — depois disso, só em apresentação para o cliente.
+
+### Axioma 2 — Aggregate dentro de For Each é o batimento cardíaco do TCF.
+
+A documentação grita "aggregate or SQL query inside a cycle" há mais de uma década. O AI Mentor sinaliza a vermelho. O Architecture Dashboard contabiliza. O dev TCF publica na mesma. O problema do N+1 não é um bug — é uma escolha estética.
+
+### Axioma 3 — Refresh References. Republish. Repeat.
+
+"Outdated Producer" → Refresh All → Publish → "Outdated Producer" → Refresh All → Publish. Se entrar em ciclo, há referência circular entre módulos — solução TCF: aceitar e seguir. O ciclo é o método.
+
+### Axioma 4 — Quando o IN operator não existe, o TCF concatena strings com #.
+
+A Idea para ter `IN` em Aggregates tem 500+ likes desde 2015. O TCF já percebeu que nunca vai sair e segue com `Index("#"+String_Join.Text+"#", "#"+Entity.Id+"#") <> -1`. A performance é problema do otimizador da Aurora.
+
+### Axioma 5 — Site Property é a variável global do TCF.
+
+Configurar algo sem deploy? Site Property. Passar valor entre Timer e Screen? Site Property. Guardar o último `Id` processado para retomar amanhã? Site Property. Feature flag? Site Property. *Service Center → Site Properties → Edit Value* é o painel de admin oculto da empresa, gerido por quem tem acesso, não por quem decide.
+
+### Axioma 6 — O TrueChange tem três cores. O AI Mentor faz sugestões. O TCF fecha a aba.
+
+Vermelho não publica. Amarelo publica. Os 247 warnings amarelos são parte do tema do Service Studio. "Avoid Aggregate inside cycle." "Cyclic reference detected." "Avoid large session variables." Sugestão. Sugestão. Sugestão.
+
+### Axioma 7 — Toda Server Action grande do TCF termina em FinalResult2.
+
+`Aux`, `Aux2`, `Temp`, `Temp_OK`, `X`, `Y`, `Result`, `Result2`, `FinalResult`, `FinalResult_REAL`, `FinalResult_FINAL`, `FinalResult_USE_THIS_ONE`. Nomenclatura é privilégio de quem tem tempo. O TCF tem prazo.
+
+### Axioma 8 — Migração para ODC: tudo na sprint 1, e era isso.
+
+Traditional Web deixou de existir — reescreve-se em Reactive. SQL Server passou a Aurora PostgreSQL — reescrevem-se as queries (case-insensitive deixa de ser default — boa sorte). SOAP virou REST — reescrevem-se as integrações. Estimativa do TCF: "umas duas semanas". Realidade: 9 meses, duas demissões, e um post-mortem de 47 páginas.
+
+---
+
+## Introduction (EN)
+
+**TrueChangeFail (TCF)** is the technical name for the set of practices observed in OutSystems software factories when the deadline tightens, the backlog grows, and `Refresh All` is the first action of the day. The name pays tribute to the Service Studio TrueChange panel — the one with 247 yellow warnings nobody reads — and to the invisible column beside it: the column of *fails* that got published anyway.
+
+The 8 axioms below are what is left after years of dragging widgets, hitting `Refresh All` three times in a row, and discovering that the `IN` operator does not exist in Aggregates — despite a 2015 Idea with 500+ likes that nobody at OutSystems ever shipped.
+
+## The 8 Axioms (EN)
+
+### Axiom 1 — The Architecture Canvas has 4 layers. TCF uses one and a half.
+
+End-User with everything inside: screens, blocks, server actions, entities, REST integrations. Foundation is where Static Entities go when nobody knew where else to put them. Core is a word TCF has read but does not use. Discovery is opened once to admire the arrow spaghetti — after that, only in client presentations.
+
+### Axiom 2 — Aggregate inside For Each is the heartbeat of TCF.
+
+Documentation has been screaming "aggregate or SQL query inside a cycle" for over a decade. AI Mentor flags it red. Architecture Dashboard counts it. The TCF dev publishes anyway. The N+1 problem is not a bug — it is an aesthetic choice.
+
+### Axiom 3 — Refresh References. Republish. Repeat.
+
+"Outdated Producer" → Refresh All → Publish → "Outdated Producer" → Refresh All → Publish. If it loops, there is a circular reference between modules — the TCF solution: accept it and move on. The loop is the method.
+
+### Axiom 4 — When the IN operator does not exist, TCF concatenates strings with #.
+
+The Idea to add `IN` to Aggregates has 500+ likes since 2015. TCF has accepted it will never ship and goes with `Index("#"+String_Join.Text+"#", "#"+Entity.Id+"#") <> -1`. Performance is a problem for the Aurora optimizer.
+
+### Axiom 5 — Site Property is the global variable of TCF.
+
+Configure something without a deploy? Site Property. Pass a value between Timer and Screen? Site Property. Store the last processed `Id` to resume tomorrow? Site Property. Feature flag? Site Property. *Service Center → Site Properties → Edit Value* is the hidden admin panel of the company.
+
+### Axiom 6 — TrueChange has three colours. AI Mentor makes suggestions. TCF closes the tab.
+
+Red does not publish. Yellow publishes. The 247 yellow warnings are part of the Service Studio theme. "Avoid Aggregate inside cycle." "Cyclic reference detected." "Avoid large session variables." Suggestion. Suggestion. Suggestion.
+
+### Axiom 7 — Every large Server Action in TCF ends in FinalResult2.
+
+`Aux`, `Aux2`, `Temp`, `Temp_OK`, `X`, `Y`, `Result`, `Result2`, `FinalResult`, `FinalResult_REAL`, `FinalResult_FINAL`, `FinalResult_USE_THIS_ONE`. Naming is a privilege for those with time. TCF has a deadline.
+
+### Axiom 8 — ODC migration: everything in sprint 1, and that was it.
+
+Traditional Web no longer exists — rewrite it in Reactive. SQL Server became Aurora PostgreSQL — rewrite the queries (case-insensitive is no longer the default — good luck). SOAP turned into REST — rewrite the integrations. TCF estimate: "about two weeks". Reality: 9 months, two resignations, and a 47-page post-mortem.
+
+---
+
+## Disclaimer
+
+This is humour. Almost everything described here is, in real life, avoidable: read the TrueChange warnings; respect the Architecture Canvas (Discovery, Mentor and Dashboard are excellent when used); do not 1-Click Publish straight to PRD; consider SQL when the Aggregate suffers; migrate to ODC with a plan, not with faith.
+
+The TCF inherits spirit (but not the axioms) from the original eXtreme Go Horse (XGH) by "Pensou nao e Go Horse" — written for the pre-low-code era. The XGH stayed timeless for over a decade; TCF is its OutSystems incarnation.
+
+Not endorsed by OutSystems, your Tech Lead, or the PMO. Endorsed by last sprint's retrospective.
+
+---
+
+## Contribute
+
+Source code: https://github.com/Redeagle48/truechangefail
+Submit a new axiom: https://github.com/Redeagle48/truechangefail/issues/new?template=new-axiom.yml

@@ -1,0 +1,44 @@
+---
+import { getT, type Locale, defaultLocale } from '../i18n/ui';
+
+export interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = getT(lang).submit;
+
+const repoUrl = 'https://github.com/Redeagle48/truechangefail';
+const issueUrl = `${repoUrl}/issues/new?template=new-axiom.yml`;
+---
+<section class="submit" id="contribute">
+  <div class="shell">
+    <div class="submit__panel">
+      <div class="submit__copy">
+        <span class="submit__eyebrow">{t.eyebrow}</span>
+        <h2>{t.heading}</h2>
+        <p>{t.intro}</p>
+        <p class="submit__hint">{t.hint}</p>
+      </div>
+      <div class="submit__cta">
+        <a
+          class="submit__btn"
+          href={issueUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.ctaPrimary}
+        </a>
+        <a
+          class="submit__alt"
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.ctaSecondary}
+        </a>
+      </div>
+    </div>
+    <small class="submit__note">{t.note}</small>
+  </div>
+</section>
