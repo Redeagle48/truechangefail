@@ -1,0 +1,47 @@
+---
+// PLACEHOLDER: níveis satíricos de "certificação". Adapta ao gosto.
+const levels = [
+  {
+    rank: 'Nível I',
+    name: 'Junior Cavaleiro',
+    desc: 'Já fez deploy em produção a partir do Service Studio. Lorem ipsum dolor sit.',
+  },
+  {
+    rank: 'Nível II',
+    name: 'Pleno do Caos',
+    desc: 'Tem pelo menos uma timer chamada "Aux2" a correr há 3 anos. Consectetur adipiscing.',
+  },
+  {
+    rank: 'Nível III',
+    name: 'Senior Improvisador',
+    desc: 'Já resolveu um bug em produção via SQL direto. Eiusmod tempor incididunt ut labore.',
+  },
+  {
+    rank: 'Nível IV',
+    name: 'Arquiteto da Despesa',
+    desc: 'Desenhou uma arquitetura que só ele entende — e já saiu da empresa. Magna aliqua.',
+  },
+];
+---
+<section class="levels">
+  <div class="shell">
+    <div class="levels__head">
+      <h2>Níveis de certificação</h2>
+      <p style="margin-top:0.8rem;opacity:0.75;max-width:55ch">
+        <!-- PLACEHOLDER -->
+        Programa oficial não-reconhecido pela OutSystems, pela tua equipa,
+        nem por nenhuma entidade séria. Resultados podem variar.
+      </p>
+    </div>
+
+    <div class="levels__grid">
+      {levels.map((l) => (
+        <article class="level">
+          <div class="level__rank">{l.rank}</div>
+          <h3 class="level__name">{l.name}</h3>
+          <p class="level__desc">{l.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

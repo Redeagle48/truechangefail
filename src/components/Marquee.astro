@@ -1,0 +1,10 @@
+---
+// Marquee — frase repetida em loop. Troca o texto à vontade.
+const phrase = 'Atenção · Alto débito técnico · Boas práticas suspensas · Code review opcional';
+const repeats = Array(8).fill(phrase);
+---
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {repeats.map((p) => <span>{p}</span>)}
+  </div>
+</div>
