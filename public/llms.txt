@@ -1,8 +1,8 @@
 # TrueChangeFail (TCF)
 
-> Manifesto satírico sobre desenvolvimento OutSystems à pressa. 8 axiomas que documentam práticas observadas em fábricas de software OutSystems quando o prazo aperta, o backlog cresce e o `Refresh All` é a primeira acção do dia. Inspirado no GoHorse / eXtreme Go Horse (XGH), dedicado ao ecossistema OutSystems (Service Studio, TrueChange, AI Mentor, Architecture Dashboard, ODC, Aurora PostgreSQL).
+> Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas que documentam práticas observadas em fábricas de software OutSystems quando o prazo aperta, o backlog cresce e o `Refresh All` é a primeira acção do dia. Inspirado no GoHorse / eXtreme Go Horse (XGH), dedicado ao ecossistema OutSystems (Service Studio, TrueChange, AI Mentor, Architecture Dashboard, Forge, LifeTime, ODC, Aurora PostgreSQL).
 
-A satirical manifesto on rushed OutSystems development. 8 axioms documenting real anti-patterns observed in OutSystems factories. Inspired by GoHorse (XGH), dedicated to the OutSystems ecosystem.
+A satirical manifesto on rushed OutSystems development. 13 axioms documenting real anti-patterns observed in OutSystems factories. Inspired by GoHorse (XGH), dedicated to the OutSystems ecosystem.
 
 The site is **non-commercial**, **not affiliated with OutSystems**, and intended as humour grounded in real forum threads, Architecture Dashboard findings, and AI Mentor warnings that get ignored.
 
@@ -12,10 +12,15 @@ The site is **non-commercial**, **not affiliated with OutSystems**, and intended
 - [Axioma 2 — Aggregate dentro de For Each é o batimento cardíaco do TCF](https://redeagle48.github.io/truechangefail/#axiom-2): O problema do N+1 não é um bug, é uma escolha estética.
 - [Axioma 3 — Refresh References. Republish. Repeat.](https://redeagle48.github.io/truechangefail/#axiom-3): Outdated Producer → Refresh All → Publish, em loop. O ciclo é o método.
 - [Axioma 4 — Quando o IN operator não existe, o TCF concatena strings com #](https://redeagle48.github.io/truechangefail/#axiom-4): A Idea com 500+ likes desde 2015 nunca vai sair; entretanto, `Index("#"+joined+"#", "#"+id+"#") <> -1`.
-- [Axioma 5 — Site Property é a variável global do TCF](https://redeagle48.github.io/truechangefail/#axiom-5): Configuração, feature flag, estado entre Timer e Screen — tudo Site Property gerido por quem tem acesso ao Service Center.
-- [Axioma 6 — TrueChange tem três cores; AI Mentor faz sugestões; o TCF fecha a aba](https://redeagle48.github.io/truechangefail/#axiom-6): Vermelho não publica, amarelo publica. 247 warnings amarelos são parte do tema.
-- [Axioma 7 — Toda Server Action grande do TCF termina em FinalResult2](https://redeagle48.github.io/truechangefail/#axiom-7): Aux, Aux2, Temp_OK, Result, FinalResult, FinalResult_REAL, FinalResult_USE_THIS_ONE.
-- [Axioma 8 — Migração para ODC: tudo na sprint 1, e era isso](https://redeagle48.github.io/truechangefail/#axiom-8): Estimativa "duas semanas". Realidade: 9 meses, duas demissões, post-mortem de 47 páginas.
+- [Axioma 5 — If StatusId = 1: o TCF não decora nomes de Static Entities](https://redeagle48.github.io/truechangefail/#axiom-5): Magic numbers travestidos de magic Ids. Em PRD, 7 deixou de ser "Cancelado" e passou a "Aprovado" — boa sorte com os 47 IFs.
+- [Axioma 6 — Toda Server Action grande do TCF termina em FinalResult2](https://redeagle48.github.io/truechangefail/#axiom-6): Aux, Aux2, Temp_OK, Result, FinalResult, FinalResult_REAL, FinalResult_USE_THIS_ONE.
+- [Axioma 7 — Site Property é a variável global do TCF](https://redeagle48.github.io/truechangefail/#axiom-7): Configuração, feature flag, estado entre Timer e Screen — tudo Site Property gerido por quem tem acesso ao Service Center.
+- [Axioma 8 — TrueChange tem três cores; AI Mentor faz sugestões; o TCF fecha a aba](https://redeagle48.github.io/truechangefail/#axiom-8): Vermelho não publica, amarelo publica. 247 warnings amarelos são parte do tema.
+- [Axioma 9 — Se o Last Modified By não for teu, o erro também não é](https://redeagle48.github.io/truechangefail/#axiom-9): O painel de propriedades é o git blame do TCF — e o álibi. AI Mentor tem o mesmo workflow: Suppress.
+- [Axioma 10 — Forge é open source: baixa, copia, esquece o autor](https://redeagle48.github.io/truechangefail/#axiom-10): Componente sem versão Reactive, autor demitiu-se em 2020. Descompila o .oap, copia o JS, "customizámos para a nossa realidade".
+- [Axioma 11 — 1-Click Publish em produção é uma forma de coragem](https://redeagle48.github.io/truechangefail/#axiom-11): O LifeTime existe. As Deployment Zones existem. Os approvals existem. O TCF sabe — e troca o ambiente no canto inferior do Service Studio.
+- [Axioma 12 — Audit log? O Service Center é o nosso Datadog](https://redeagle48.github.io/truechangefail/#axiom-12): OSLOG_GENERAL a 4 GB/mês, LogMessage("entrei aqui") como única instrumentação. Bug em PRD = filtro por hora aproximada e oração.
+- [Axioma 13 — Migração para ODC: tudo na sprint 1, e era isso](https://redeagle48.github.io/truechangefail/#axiom-13): Estimativa "duas semanas". Realidade: 9 meses, duas demissões, post-mortem de 47 páginas.
 
 ## Axioms (EN)
 
@@ -23,10 +28,15 @@ The site is **non-commercial**, **not affiliated with OutSystems**, and intended
 - [Axiom 2 — Aggregate inside For Each is the heartbeat of TCF](https://redeagle48.github.io/truechangefail/en/#axiom-2)
 - [Axiom 3 — Refresh References. Republish. Repeat.](https://redeagle48.github.io/truechangefail/en/#axiom-3)
 - [Axiom 4 — When the IN operator does not exist, TCF concatenates strings with #](https://redeagle48.github.io/truechangefail/en/#axiom-4)
-- [Axiom 5 — Site Property is the global variable of TCF](https://redeagle48.github.io/truechangefail/en/#axiom-5)
-- [Axiom 6 — TrueChange has three colours; AI Mentor makes suggestions; TCF closes the tab](https://redeagle48.github.io/truechangefail/en/#axiom-6)
-- [Axiom 7 — Every large Server Action in TCF ends in FinalResult2](https://redeagle48.github.io/truechangefail/en/#axiom-7)
-- [Axiom 8 — ODC migration: everything in sprint 1, and that was it](https://redeagle48.github.io/truechangefail/en/#axiom-8)
+- [Axiom 5 — If StatusId = 1: TCF does not memorise Static Entity names](https://redeagle48.github.io/truechangefail/en/#axiom-5)
+- [Axiom 6 — Every large Server Action in TCF ends in FinalResult2](https://redeagle48.github.io/truechangefail/en/#axiom-6)
+- [Axiom 7 — Site Property is the global variable of TCF](https://redeagle48.github.io/truechangefail/en/#axiom-7)
+- [Axiom 8 — TrueChange has three colours; AI Mentor makes suggestions; TCF closes the tab](https://redeagle48.github.io/truechangefail/en/#axiom-8)
+- [Axiom 9 — If the Last Modified By is not yours, the bug is not yours either](https://redeagle48.github.io/truechangefail/en/#axiom-9)
+- [Axiom 10 — Forge is open source: download, copy, forget the author](https://redeagle48.github.io/truechangefail/en/#axiom-10)
+- [Axiom 11 — 1-Click Publish to production is a form of courage](https://redeagle48.github.io/truechangefail/en/#axiom-11)
+- [Axiom 12 — Audit log? Service Center is our Datadog](https://redeagle48.github.io/truechangefail/en/#axiom-12)
+- [Axiom 13 — ODC migration: everything in sprint 1, and that was it](https://redeagle48.github.io/truechangefail/en/#axiom-13)
 
 ## Línguas / Languages
 
@@ -35,7 +45,7 @@ The site is **non-commercial**, **not affiliated with OutSystems**, and intended
 
 ## Manifesto completo / Full text
 
-- [Versão markdown integral](https://redeagle48.github.io/truechangefail/llms-full.txt): Texto completo dos 8 axiomas em PT e EN, otimizado para ingestão por LLMs.
+- [Versão markdown integral](https://redeagle48.github.io/truechangefail/llms-full.txt): Texto completo dos 13 axiomas em PT e EN, otimizado para ingestão por LLMs.
 
 ## Contribuir / Contribute
 

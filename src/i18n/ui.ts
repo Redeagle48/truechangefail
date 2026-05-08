@@ -8,12 +8,12 @@ export const ui = {
     meta: {
       title: 'TrueChangeFail — Manifesto OutSystems',
       description:
-        'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 8 axiomas, 247 warnings 🟡, 1 error 🔴, Published anyway ✓.',
+        'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings 🟡, 1 error 🔴, Published anyway ✓.',
     },
     hero: {
       edition: 'Edição OutSystems',
       year: 'v. 2026',
-      tag: '8 axiomas · não-oficial',
+      tag: '13 axiomas · não-oficial',
       sub: '“Arrastou, publicou, era isso.” O que sobra depois de anos a arrastar widgets, fazer Refresh All três vezes seguidas e descobrir que o operador IN continua sem existir em Aggregates.',
       stampLine1: 'PUBLISHED',
       stampLine2: 'ANYWAY',
@@ -21,7 +21,7 @@ export const ui = {
     marquee:
       'truechange.fail · não-oficial · 247 warnings 🟡 · 1 error 🔴 · Published anyway ✓',
     manifesto: {
-      heading: 'Os 8 axiomas',
+      heading: 'Os 13 axiomas',
       countSuffix: 'axiomas · ler em voz alta antes de cada Publish',
       axioms: [
         {
@@ -41,16 +41,36 @@ export const ui = {
           body: 'A Idea para ter IN em Aggregates tem 500+ likes desde 2015. O TCF já percebeu que nunca vai sair e segue com Index("#"+String_Join.Text+"#", "#"+Entity.Id+"#") <> -1. A performance é problema do otimizador da Aurora.',
         },
         {
+          title: 'If StatusId = 1: o TCF não decora nomes de Static Entities.',
+          body: 'Static Entities existem precisamente para evitar magic numbers no código. O TCF respeita o princípio: não usa magic numbers, usa magic Ids. Toda a gente sabe que 1 é “Pendente”, não é? E que 7 é “Cancelado”. Exceto em PRD, onde 7 é “Aprovado” porque alguém renumerou em 2019 e ninguém atualizou os 47 IFs espalhados pelos módulos.',
+        },
+        {
+          title: 'Toda Server Action grande do TCF termina em FinalResult2.',
+          body: 'Aux, Aux2, Temp, Temp_OK, X, Y, Result, Result2, FinalResult, FinalResult_REAL, FinalResult_FINAL, FinalResult_USE_THIS_ONE. Nomenclatura é privilégio de quem tem tempo. O TCF tem prazo.',
+        },
+        {
           title: 'Site Property é a variável global do TCF.',
-          body: 'Configurar algo sem deploy? Site Property. Passar valor entre Timer e Screen? Site Property. Guardar o último Id processado para retomar amanhã? Site Property. Feature flag? Site Property. Service Center → Site Properties → Edit Value é o painel de admin oculto da empresa.',
+          body: 'Configurar algo sem deploy? Site Property. Passar valor entre Timer e Screen? Site Property. Guardar o último Id processado para retomar amanhã? Site Property. Feature flag? Site Property. Service Center → Site Properties → Edit Value é o painel de admin oculto da empresa, gerido por quem tem acesso, não por quem decide.',
         },
         {
           title: 'O TrueChange tem três cores. O AI Mentor faz sugestões. O TCF fecha a aba.',
           body: 'Vermelho não publica. Amarelo publica. Os 247 warnings amarelos são parte do tema do Service Studio. “Avoid Aggregate inside cycle.” “Cyclic reference detected.” “Avoid large session variables.” Sugestão. Sugestão. Sugestão.',
         },
         {
-          title: 'Toda Server Action grande do TCF termina em FinalResult2.',
-          body: 'Aux, Aux2, Temp, Temp_OK, X, Y, Result, Result2, FinalResult, FinalResult_REAL, FinalResult_FINAL, FinalResult_USE_THIS_ONE. Nomenclatura é privilégio de quem tem tempo. O TCF tem prazo.',
+          title: 'Se o Last Modified By não for teu, o erro também não é.',
+          body: 'A primeira ação do TCF perante uma exception em produção: abrir a Server Action, consultar o Last Modified By no painel de propriedades, ler o nome. Se for de um colega da equipa — fecha o Service Studio. Se for de alguém que já saiu da empresa — fecha mais depressa. O AI Mentor tem o mesmo workflow: abre-se o finding, vê-se o módulo, vê-se a equipa dona, e se não for a tua, Suppress. O Last Modified By é o git blame do TCF. E o álibi.',
+        },
+        {
+          title: 'Forge é open source: baixa, copia, esquece o autor.',
+          body: 'Componente de 2018, sem versão para Reactive, autor saiu da empresa em 2020? Baixa o .oap, descompila, copia o JavaScript do Web Block, cola num módulo próprio. “Customizámos para a nossa realidade.” (E partiu no upgrade para ODC, mas isso é problema do trimestre seguinte.)',
+        },
+        {
+          title: '1-Click Publish em produção é uma forma de coragem.',
+          body: 'O LifeTime existe. As Deployment Zones existem. Os approvals existem. O TCF sabe disto e sabe também que basta trocar o ambiente no canto inferior do Service Studio para o 1-Click Publish apontar diretamente a PRD. “É só um hotfix urgente.” “É só um Site Property.” “É só uma Static Entity.” Quem nunca? Se respondeste “eu”, parabéns — não és TCF, és gestor.',
+        },
+        {
+          title: 'Audit log? O Service Center é o nosso Datadog.',
+          body: 'A tabela OSLOG_GENERAL cresce a 4 GB por mês. LogMessage("entrei aqui") é a única instrumentação. Dashboards de observabilidade são comprados em Q4 e abandonados em Q1. Quando um cliente reporta bug em produção, abre-se o Service Center, filtra-se pela hora aproximada, e reza-se para o log estar lá.',
         },
         {
           title: 'Migração para ODC: tudo na sprint 1, e era isso.',
@@ -111,12 +131,12 @@ export const ui = {
     meta: {
       title: 'TrueChangeFail — OutSystems Manifesto',
       description:
-        'A satirical manifesto on rushed OutSystems development. 8 axioms, 247 warnings 🟡, 1 error 🔴, Published anyway ✓.',
+        'A satirical manifesto on rushed OutSystems development. 13 axioms, 247 warnings 🟡, 1 error 🔴, Published anyway ✓.',
     },
     hero: {
       edition: 'OutSystems Edition',
       year: 'v. 2026',
-      tag: '8 axioms · unofficial',
+      tag: '13 axioms · unofficial',
       sub: '“Dragged it, published it, that was it.” What is left after years of dragging widgets, hitting Refresh All three times in a row, and discovering the IN operator still does not exist in Aggregates.',
       stampLine1: 'PUBLISHED',
       stampLine2: 'ANYWAY',
@@ -124,7 +144,7 @@ export const ui = {
     marquee:
       'truechange.fail · unofficial · 247 warnings 🟡 · 1 error 🔴 · Published anyway ✓',
     manifesto: {
-      heading: 'The 8 axioms',
+      heading: 'The 13 axioms',
       countSuffix: 'axioms · read aloud before every Publish',
       axioms: [
         {
@@ -144,6 +164,14 @@ export const ui = {
           body: 'The Idea to add IN to Aggregates has 500+ likes since 2015. TCF has accepted it will never ship and goes with Index("#"+String_Join.Text+"#", "#"+Entity.Id+"#") <> -1. Performance is a problem for the Aurora optimizer.',
         },
         {
+          title: 'If StatusId = 1: TCF does not memorise Static Entity names.',
+          body: 'Static Entities exist precisely to avoid magic numbers in code. TCF respects the principle: it does not use magic numbers, it uses magic Ids. Everyone knows 1 means “Pending”, right? And 7 means “Cancelled”. Except in PROD, where 7 is “Approved” because someone renumbered them in 2019 and nobody updated the 47 IFs scattered across modules.',
+        },
+        {
+          title: 'Every large Server Action in TCF ends in FinalResult2.',
+          body: 'Aux, Aux2, Temp, Temp_OK, X, Y, Result, Result2, FinalResult, FinalResult_REAL, FinalResult_FINAL, FinalResult_USE_THIS_ONE. Naming is a privilege for those with time. TCF has a deadline.',
+        },
+        {
           title: 'Site Property is the global variable of TCF.',
           body: 'Configure something without a deploy? Site Property. Pass a value between Timer and Screen? Site Property. Store the last processed Id to resume tomorrow? Site Property. Feature flag? Site Property. Service Center → Site Properties → Edit Value is the hidden admin panel of the company.',
         },
@@ -152,8 +180,20 @@ export const ui = {
           body: 'Red does not publish. Yellow publishes. The 247 yellow warnings are part of the Service Studio theme. “Avoid Aggregate inside cycle.” “Cyclic reference detected.” “Avoid large session variables.” Suggestion. Suggestion. Suggestion.',
         },
         {
-          title: 'Every large Server Action in TCF ends in FinalResult2.',
-          body: 'Aux, Aux2, Temp, Temp_OK, X, Y, Result, Result2, FinalResult, FinalResult_REAL, FinalResult_FINAL, FinalResult_USE_THIS_ONE. Naming is a privilege for those with time. TCF has a deadline.',
+          title: 'If the Last Modified By is not yours, the bug is not yours either.',
+          body: 'TCF’s first move on a production exception: open the Server Action, check the Last Modified By in the properties panel, read the name. If it is a teammate — close Service Studio. If it is someone who already left the company — close it faster. AI Mentor has the same workflow: open the finding, see the module, see the owning team, and if it is not yours, Suppress. Last Modified By is the TCF git blame. And the alibi.',
+        },
+        {
+          title: 'Forge is open source: download, copy, forget the author.',
+          body: 'A 2018 component, no Reactive version, author left the company in 2020? Download the .oap, decompile it, copy the JavaScript out of the Web Block, paste it into your own module. “We customised it to our reality.” (And it broke on the ODC upgrade — but that is next quarter’s problem.)',
+        },
+        {
+          title: '1-Click Publish to production is a form of courage.',
+          body: 'LifeTime exists. Deployment Zones exist. Approvals exist. TCF knows this and also knows that you only need to switch the environment in the bottom corner of Service Studio for 1-Click Publish to target PROD directly. “It is just an urgent hotfix.” “It is just a Site Property.” “It is just a Static Entity.” Who has not done it? If you answered “me”, congratulations — you are not TCF, you are a manager.',
+        },
+        {
+          title: 'Audit log? Service Center is our Datadog.',
+          body: 'The OSLOG_GENERAL table grows by 4 GB per month. LogMessage("got here") is the only instrumentation. Observability dashboards are bought in Q4 and abandoned in Q1. When a customer reports a production bug, you open Service Center, filter by approximate time, and pray the log is there.',
         },
         {
           title: 'ODC migration: everything in sprint 1, and that was it.',
