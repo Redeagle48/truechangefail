@@ -130,6 +130,71 @@ const jsonLd = {
       <link rel="alternate" hreflang={h.hreflang} href={h.href} />
     ))}
     <link rel="alternate" hreflang="x-default" href={xDefault} />
+    <script is:inline set:html={`
+(function(){
+  var html = document.documentElement;
+  function mark(k, v){ try { html.setAttribute("data-tcf-" + k, String(v)); } catch(_){} }
+  try {
+    var ptRe = /^pt(-|$)/i;
+    var docLang = html.lang || "en";
+    var isPt = ptRe.test(docLang);
+
+    // Probe localStorage availability (Safari private mode, Brave shields, etc. throw on setItem).
+    var lsOk = false;
+    try {
+      var probe = "__tcf_probe__";
+      window.localStorage.setItem(probe, "1");
+      window.localStorage.removeItem(probe);
+      lsOk = true;
+    } catch(e) { lsOk = false; }
+    mark("ls", lsOk ? "1" : "0");
+
+    var pref = null;
+    if (lsOk) {
+      try { pref = window.localStorage.getItem("tcf-lang"); } catch(e) {}
+    }
+    var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+    mark("browser", browserLang);
+
+    if (!pref) {
+      pref = ptRe.test(browserLang) ? "pt" : "en";
+      if (lsOk) {
+        try { window.localStorage.setItem("tcf-lang", pref); } catch(e) {}
+      }
+    }
+    mark("pref", pref);
+    mark("doc", docLang);
+
+    if ((isPt && pref === "pt") || (!isPt && pref === "en")) {
+      mark("action", "stay");
+      return;
+    }
+    var targetHreflang = pref === "pt" ? "pt-PT" : "en";
+    var link = document.querySelector('link[rel="alternate"][hreflang="' + targetHreflang + '"]');
+    if (link && link.href) {
+      // Strip origin so we stay on the current host (avoids dev → prod jumps).
+      var targetPath;
+      try {
+        var u = new URL(link.href);
+        targetPath = u.pathname + u.search + u.hash;
+      } catch (_) {
+        targetPath = link.getAttribute("href");
+      }
+      var currentPath = location.pathname + location.search + location.hash;
+      if (targetPath && targetPath !== currentPath) {
+        mark("action", "redirect");
+        location.replace(targetPath);
+      } else {
+        mark("action", "same-path");
+      }
+    } else {
+      mark("action", "no-alt");
+    }
+  } catch(e) {
+    mark("error", (e && e.message) || e);
+  }
+})();
+`} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="article" />

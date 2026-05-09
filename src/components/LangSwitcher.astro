@@ -8,14 +8,25 @@ export interface Props {
 
 const { lang = defaultLocale } = Astro.props;
 const t = getT(lang).switcher;
+
+// Derive the current page "slug" so the switcher links to the same page in
+// the other locale (instead of always going home).
+const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+let slug = Astro.url.pathname;
+if (base && slug.startsWith(base)) slug = slug.slice(base.length);
+if (slug.startsWith('/en/')) slug = slug.slice(4);
+else if (slug === '/en') slug = '';
+else if (slug.startsWith('/')) slug = slug.slice(1);
+if (slug.endsWith('/')) slug = slug.slice(0, -1);
 ---
 <nav class="lang-switcher" aria-label={t.label}>
   {locales.map((loc) => (
     <a
-      href={getRelativeLocaleUrl(loc, '')}
+      href={getRelativeLocaleUrl(loc, slug)}
       class:list={['lang-switcher__link', { 'is-active': loc === lang }]}
       aria-current={loc === lang ? 'page' : undefined}
       hreflang={loc}
+      onclick={`try{localStorage.setItem('tcf-lang','${loc}')}catch(e){}`}
     >
       {t[loc]}
     </a>
