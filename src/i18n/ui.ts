@@ -6,14 +6,15 @@ export const ui = {
   pt: {
     htmlLang: 'pt-PT',
     meta: {
-      title: 'XGH-OS — Manifesto OutSystems',
+      title: 'eXtreme Go Horse | Edição OutSystems',
       description:
         'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings 🟡, 1 error 🔴, 1-CP anyway ✓.',
     },
     hero: {
-      edition: 'eXtreme Go Horse | eXtreme Go Horse | OutSystems Edition',
+      edition: 'eXtreme Go Horse | Edição OutSystems',
       year: 'v. 2026',
       tag: '13 axiomas · não-oficial',
+      brandStrap: '| OutSystems Edition',
       sub: '“Arrastou, fez 1-CP, era isso.” O que sobra depois de anos a arrastar widgets, fazer Refresh All três vezes seguidas e descobrir que o operador IN continua sem existir em Aggregates.',
       stampLine1: '1-CP',
       stampLine2: 'ANYWAY',
@@ -172,7 +173,7 @@ export const ui = {
   en: {
     htmlLang: 'en',
     meta: {
-      title: 'XGH-OS — OutSystems Manifesto',
+      title: 'eXtreme Go Horse | OutSystems Edition',
       description:
         'A satirical manifesto on rushed OutSystems development. 13 axioms, 247 warnings 🟡, 1 error 🔴, 1-CP anyway ✓.',
     },
@@ -180,6 +181,7 @@ export const ui = {
       edition: 'eXtreme Go Horse | OutSystems Edition',
       year: 'v. 2026',
       tag: '13 axioms · unofficial',
+      brandStrap: '| OutSystems Edition',
       sub: '“Dragged it, 1-CP’d it, that was it.” What is left after years of dragging widgets, hitting Refresh All three times in a row, and discovering the IN operator still does not exist in Aggregates.',
       stampLine1: '1-CP',
       stampLine2: 'ANYWAY',
