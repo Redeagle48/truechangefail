@@ -119,6 +119,20 @@ export const ui = {
       tagline:
         'uma sátira · sem afiliação à OutSystems · 247 warnings 🟡 · published anyway ✓',
       backToTop: 'topo ↑',
+      aboutLink: 'sobre & legal',
+    },
+    about: {
+      meta: {
+        title: 'Sobre & Disclaimer Legal — TrueChangeFail',
+        description:
+          'TrueChangeFail é uma obra de sátira. Não é afiliada, endossada ou associada à OutSystems S.A. Esta página explica o estatuto legal, marcas registadas e canal de takedown.',
+      },
+      hero: {
+        eyebrow: 'Disclaimer · Legal · Sátira',
+        title: 'Sobre',
+        sub: 'O que é o TCF, o que não é, e como falar connosco se trabalhares na OutSystems.',
+      },
+      back: '← voltar ao manifesto',
     },
     switcher: {
       pt: 'PT',
@@ -242,6 +256,20 @@ export const ui = {
       tagline:
         'a satire · not affiliated with OutSystems · 247 warnings 🟡 · published anyway ✓',
       backToTop: 'top ↑',
+      aboutLink: 'about & legal',
+    },
+    about: {
+      meta: {
+        title: 'About & Legal Notice — TrueChangeFail',
+        description:
+          'TrueChangeFail is a satirical work. It is not affiliated with, endorsed by, or otherwise associated with OutSystems S.A. This page covers the legal status, trademarks and takedown contact.',
+      },
+      hero: {
+        eyebrow: 'Disclaimer · Legal · Satire',
+        title: 'About',
+        sub: 'What TCF is, what it is not, and how to reach us if you work at OutSystems.',
+      },
+      back: '← back to manifesto',
     },
     switcher: {
       pt: 'PT',

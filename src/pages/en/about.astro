@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import LangSwitcher from '../../components/LangSwitcher.astro';
+import { getT, type Locale } from '../../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const lang: Locale = 'en';
+const t = getT(lang).about;
+const home = getRelativeLocaleUrl(lang, '');
+---
+<Layout
+  lang={lang}
+  pageKind="about"
+  title={t.meta.title}
+  description={t.meta.description}
+>
+  <LangSwitcher lang={lang} />
+  <main id="top" class="about">
+    <header class="about__hero">
+      <div class="shell">
+        <span class="about__eyebrow reveal reveal-1">{t.hero.eyebrow}</span>
+        <h1 class="about__title reveal reveal-2">{t.hero.title}</h1>
+        <p class="about__sub reveal reveal-3">{t.hero.sub}</p>
+        <a class="about__back reveal reveal-4" href={home}>{t.back}</a>
+      </div>
+    </header>
+
+    <section class="about__section about__section--paper">
+      <div class="shell">
+        <h2>1. What TCF is</h2>
+        <p>
+          <strong>TrueChangeFail</strong> (TCF) is a <strong>satirical work</strong>
+          about practices observed in OutSystems development teams. The
+          manifesto is humour with a factual basis: every axiom is grounded in
+          behaviour documented across the public OutSystems forum, in
+          <em>AI Mentor</em> recommendations, in <em>Architecture Dashboard</em>
+          findings, or in the official platform documentation.
+        </p>
+        <p>
+          TCF is <strong>in no way affiliated with, endorsed by, authorised by,
+          or otherwise associated with OutSystems S.A.</strong> or any of its
+          subsidiaries. There is no commercial partnership, no contract, no prior
+          review. It is a personal, free, and <em>open source</em> project.
+        </p>
+      </div>
+    </section>
+
+    <section class="about__section about__section--ink">
+      <div class="shell">
+        <h2>2. Legal status — parody &amp; satire</h2>
+        <p>
+          TCF qualifies as <strong>parody / social-commentary satire</strong>
+          on common practices in the OutSystems ecosystem. This kind of work is
+          recognised by law:
+        </p>
+        <ul class="about__list">
+          <li>
+            <strong>Portugal</strong> — article 75(2)(s) of the
+            <em>Código do Direito de Autor e dos Direitos Conexos</em> (CDADC):
+            use for parody.
+          </li>
+          <li>
+            <strong>European Union</strong> — Directive 2001/29/EC, article
+            5(3)(k): exception for parody and caricature.
+          </li>
+          <li>
+            <strong>United States</strong> — <em>fair use</em> under
+            17 U.S.C. § 107 (factor 1: <em>transformative use</em>; factor 4:
+            no effect on the market for the original work).
+          </li>
+        </ul>
+        <p class="about__pillars">
+          <strong>Non-commercial</strong> · free · ad-free · no affiliates ·
+          no subscriptions · no personal-data collection (only aggregate
+          cookieless analytics).
+        </p>
+        <p>
+          <strong>No defamation</strong>: no personal attacks, no reference to
+          identifiable individuals, no implication of unlawful conduct. The
+          axioms describe aggregate patterns of collective ecosystem
+          behaviour, written in a self-deprecating tone (the implicit
+          <em>"we"</em> of the manifesto includes the author).
+        </p>
+      </div>
+    </section>
+
+    <section class="about__section about__section--paper">
+      <div class="shell">
+        <h2>3. Trademarks &amp; nominative use</h2>
+        <p>
+          References to OutSystems products, tools, and technologies are made
+          under <strong>nominative use</strong> — that is, to identify the
+          object of criticism and commentary, not to suggest affiliation. The
+          following marks belong to their respective owners:
+        </p>
+        <ul class="about__list about__list--tight">
+          <li>
+            <strong>OutSystems®</strong>, <strong>Service Studio®</strong>,
+            <strong>TrueChange®</strong>, <em>AI Mentor</em>,
+            <em>Architecture Dashboard</em>, <em>Forge</em>, <em>LifeTime</em>,
+            <em>ODC</em> (OutSystems Developer Cloud), <em>Discovery</em> —
+            registered or common-law trademarks of <strong>OutSystems S.A.</strong>
+          </li>
+          <li>
+            <em>Aurora PostgreSQL</em>, <em>SQL Server</em> — registered
+            trademarks of Amazon Web Services and Microsoft Corporation,
+            respectively.
+          </li>
+          <li>
+            <strong>GoHorse</strong> / <strong>eXtreme Go Horse (XGH)</strong> —
+            original work by <em>"Pensou nao e Go Horse"</em>, cited as
+            spiritual lineage.
+          </li>
+          <li>
+            Any other mark mentioned belongs to its respective holder.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about__section about__section--blood">
+      <div class="shell">
+        <h2>4. If you work at OutSystems</h2>
+        <p>
+          If you work at OutSystems S.A. (legal, marketing, product, dev-rel)
+          and have a concrete concern about any passage in the manifesto, this
+          is the contact channel:
+        </p>
+        <p class="about__cta-row">
+          <a
+            class="about__cta"
+            href="https://github.com/Redeagle48/truechangefail/issues/new?title=%5BLegal%5D+&labels=legal"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open a takedown / clarification issue →
+          </a>
+        </p>
+        <p>The author commits to:</p>
+        <ul class="about__list">
+          <li>Reply within <strong>48 business hours</strong>.</li>
+          <li>
+            Remove or rephrase any content demonstrated to be
+            <strong>factually incorrect</strong>, defamatory, or beyond the
+            legitimate scope of parody.
+          </li>
+          <li>
+            Keep a public record of all changes in the repository history at
+            <a
+              href="https://github.com/Redeagle48/truechangefail"
+              target="_blank"
+              rel="noopener noreferrer"
+            >github.com/Redeagle48/truechangefail</a>.
+          </li>
+        </ul>
+        <p class="about__pillars">
+          We are not your enemies — we are last sprint's retrospective.
+        </p>
+      </div>
+    </section>
+
+    <section class="about__section about__section--paper">
+      <div class="shell">
+        <h2>5. Lineage &amp; intent</h2>
+        <p>
+          TCF inherits the spirit (but not the axioms) of the
+          <a
+            href="https://gohorse.com.br/extreme-go-horse-xgh.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >original <em>eXtreme Go Horse (XGH)</em></a>, written by
+          <em>"Pensou nao e Go Horse"</em> for the pre-low-code era. XGH stayed
+          relevant for over a decade.
+        </p>
+        <p>
+          The intent of TCF is not to disparage OutSystems as a platform — it
+          is in fact the opposite: to acknowledge with humour the
+          <em>self-inflicted</em> practices the entire industry repeats and
+          nobody admits in retrospective. The very tools TCF mocks (TrueChange,
+          AI Mentor, Architecture Dashboard, Discovery) are themselves the
+          solutions OutSystems ships for the problems we document. The
+          manifesto is an open letter to the teams that ignore them.
+        </p>
+      </div>
+    </section>
+
+    <section class="about__section about__section--ink">
+      <div class="shell">
+        <h2>6. Serious Disclaimer™</h2>
+        <p>
+          Almost everything described here is, in real life,
+          <strong>avoidable</strong>.
+        </p>
+        <ul class="about__list">
+          <li>Read the TrueChange warnings.</li>
+          <li>
+            Respect the Architecture Canvas — Discovery, Mentor, and Dashboard
+            are <em>brutal</em> when used.
+          </li>
+          <li>Don't <code>1-Click Publish</code> straight to PROD.</li>
+          <li>Reach for SQL when the Aggregate suffers.</li>
+          <li>Migrate to ODC with a plan, not with faith.</li>
+          <li>
+            If this manifesto made you laugh and gave you a cramp of recognition
+            at the same time — it is doing its job.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <Footer lang={lang} />
+  </main>
+</Layout>

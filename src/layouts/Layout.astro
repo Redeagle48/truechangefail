@@ -7,9 +7,10 @@ export interface Props {
   lang?: Locale;
   title?: string;
   description?: string;
+  pageKind?: 'manifesto' | 'about';
 }
 
-const { lang = defaultLocale, title, description } = Astro.props;
+const { lang = defaultLocale, title, description, pageKind = 'manifesto' } = Astro.props;
 const t = getT(lang);
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
@@ -28,61 +29,91 @@ const xDefault = new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).to
 
 const websiteId = `${new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString()}#website`;
 const articleId = `${canonical}#manifesto`;
+const aboutPageId = `${canonical}#about`;
 const axiomsListId = `${canonical}#axioms`;
+
+const personPublisher = {
+  '@type': 'Person',
+  name: 'Redeagle48',
+  url: 'https://github.com/Redeagle48',
+};
+
+const websiteNode = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString(),
+  name: 'TrueChangeFail (TCF)',
+  alternateName: 'TCF',
+  description:
+    'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings, published anyway.',
+  inLanguage: ['pt-PT', 'en'],
+};
+
+const manifestoGraph = [
+  websiteNode,
+  {
+    '@type': 'Article',
+    '@id': articleId,
+    isPartOf: { '@id': websiteId },
+    url: canonical,
+    headline: pageTitle,
+    description: pageDescription,
+    inLanguage: t.htmlLang,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-09',
+    author: personPublisher,
+    publisher: personPublisher,
+    keywords: [
+      'OutSystems',
+      'TrueChange',
+      'manifesto',
+      'satire',
+      'GoHorse',
+      'low-code',
+      'ODC',
+      'AI Mentor',
+      'Architecture Dashboard',
+    ],
+    mainEntity: { '@id': axiomsListId },
+  },
+  {
+    '@type': 'ItemList',
+    '@id': axiomsListId,
+    name: t.manifesto.heading,
+    numberOfItems: t.manifesto.axioms.length,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    itemListElement: t.manifesto.axioms.map((a, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `${canonical}#axiom-${idx + 1}`,
+      name: a.title,
+      description: a.body,
+    })),
+  },
+];
+
+const aboutGraph = [
+  websiteNode,
+  {
+    '@type': 'AboutPage',
+    '@id': aboutPageId,
+    isPartOf: { '@id': websiteId },
+    url: canonical,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: t.htmlLang,
+    datePublished: '2026-05-09',
+    dateModified: '2026-05-09',
+    author: personPublisher,
+    publisher: personPublisher,
+    about: { '@id': websiteId },
+    significantLink: `${new URL(getRelativeLocaleUrl(lang, ''), siteOrigin).toString()}`,
+  },
+];
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': websiteId,
-      url: new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString(),
-      name: 'TrueChangeFail (TCF)',
-      alternateName: 'TCF',
-      description:
-        'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings, published anyway.',
-      inLanguage: ['pt-PT', 'en'],
-    },
-    {
-      '@type': 'Article',
-      '@id': articleId,
-      isPartOf: { '@id': websiteId },
-      url: canonical,
-      headline: pageTitle,
-      description: pageDescription,
-      inLanguage: t.htmlLang,
-      datePublished: '2026-05-08',
-      dateModified: '2026-05-09',
-      author: { '@type': 'Person', name: 'Redeagle48', url: 'https://github.com/Redeagle48' },
-      publisher: { '@type': 'Person', name: 'Redeagle48', url: 'https://github.com/Redeagle48' },
-      keywords: [
-        'OutSystems',
-        'TrueChange',
-        'manifesto',
-        'satire',
-        'GoHorse',
-        'low-code',
-        'ODC',
-        'AI Mentor',
-        'Architecture Dashboard',
-      ],
-      mainEntity: { '@id': axiomsListId },
-    },
-    {
-      '@type': 'ItemList',
-      '@id': axiomsListId,
-      name: t.manifesto.heading,
-      numberOfItems: t.manifesto.axioms.length,
-      itemListOrder: 'https://schema.org/ItemListOrderAscending',
-      itemListElement: t.manifesto.axioms.map((a, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        url: `${canonical}#axiom-${idx + 1}`,
-        name: a.title,
-        description: a.body,
-      })),
-    },
-  ],
+  '@graph': pageKind === 'about' ? aboutGraph : manifestoGraph,
 };
 ---
 <!doctype html>
