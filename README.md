@@ -1,90 +1,95 @@
-# OUTHORSE
+# XGH-OS
 
-Site brutalist single-page no estilo *manifesto*, pronto para hospedares no GitHub Pages.
-Construído em [Astro](https://astro.build/). O conteúdo está em **placeholder** (`Lorem ipsum`) — só substituis pelo teu.
+**eXtreme Go Horse | OutSystems Edition** — manifesto satírico em 13 axiomas sobre desenvolvimento OutSystems à pressa. Inspirado no [eXtreme Go Horse (XGH) original](https://gohorse.com.br/extreme-go-horse-xgh.html), dedicado ao ecossistema OutSystems (Service Studio, TrueChange, AI Mentor, Forge, LifeTime, ODC, Aurora).
+
+Site brutalist single-page bilingue (PT/EN), construído em [Astro](https://astro.build/) e deployed via GitHub Pages.
+
+> Live: <https://redeagle48.github.io/XGH-OutSystems/>
 
 ---
 
-## 1. Instalar localmente
+## Desenvolver localmente
 
-Precisas de Node.js 20 ou superior.
+Precisas de Node.js 22 ou superior.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abre <http://localhost:4321/outhorse/>.
+Abre <http://localhost:4321/XGH-OutSystems/>.
 
-## 2. Onde editar o conteúdo
+## Onde editar o conteúdo
 
-Os textos estão concentrados nos componentes. Mexe só nestes ficheiros:
-
-| Ficheiro | O que tem lá |
+| Ficheiro | O que tem |
 |---|---|
-| `src/components/Hero.astro` | título, subtítulo, carimbo |
-| `src/components/Marquee.astro` | a frase que passa em loop |
-| `src/components/Manifesto.astro` | array `axioms` — os mandamentos numerados |
-| `src/components/Levels.astro` | array `levels` — os níveis de certificação |
-| `src/components/Footer.astro` | rodapé |
-| `src/layouts/Layout.astro` | `<title>` e meta description (SEO) |
+| `src/i18n/ui.ts` | Todos os textos (PT/EN): axiomas, hero, níveis, footer, print, about |
+| `src/components/Hero.astro` | Markup do hero (wordmark XGH/-OS) e ticker random |
+| `src/components/Manifesto.astro` | Renderização dos axiomas |
+| `src/components/Levels.astro` | Níveis de certificação |
+| `src/components/Submit.astro` | CTA para submeter axiomas |
+| `src/components/Footer.astro` | Rodapé |
+| `src/pages/index.astro` & `src/pages/en/index.astro` | Pages PT e EN |
+| `src/pages/about.astro` & `en/about.astro` | About / Disclaimer Legal |
+| `src/pages/print.astro` & `en/print.astro` | Versão poster A3 imprimível |
+| `src/layouts/Layout.astro` | Head, JSON-LD, hreflang, language detection |
+| `src/styles/global.css` | Design system (Anton + JetBrains Mono + DM Serif) |
+| `public/llms.txt` & `llms-full.txt` | AEO — markdown optimizado para LLMs |
+| `.github/ISSUE_TEMPLATE/new-axiom.yml` | Template do issue de submissão |
 
-A paleta de cores e tipografias estão em `src/styles/global.css`, no bloco `:root`.
+## Deploy
 
-## 3. Publicar no GitHub Pages
+Push para `main` → GitHub Action (`.github/workflows/deploy.yml`) faz build e publica automaticamente em GitHub Pages.
 
-### Passo 1 — Ajusta `astro.config.mjs`
+Para activar Cloudflare Web Analytics: cria a variable `CF_BEACON_TOKEN` em **repo → Settings → Secrets and variables → Actions → Variables**. O workflow já lê `vars.CF_BEACON_TOKEN` e injecta-o no build.
 
-Abre o ficheiro e edita estas duas linhas:
+## Configuração
+
+`astro.config.mjs`:
 
 ```js
-site: 'https://SEU-USUARIO.github.io',
-base: '/NOME-DO-REPO',
+site: 'https://redeagle48.github.io',
+base: '/XGH-OutSystems',
+i18n: { defaultLocale: 'pt', locales: ['pt', 'en'] }
 ```
 
-> Se nomeares o repo como `seu-usuario.github.io`, define `base: '/'`.
+## Stack
 
-### Passo 2 — Cria o repo e faz push
-
-```bash
-git init
-git add .
-git commit -m "outhorse: primeira versão"
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/NOME-DO-REPO.git
-git push -u origin main
-```
-
-### Passo 3 — Ativa o GitHub Pages
-
-No repositório, vai a **Settings → Pages** e em **Source** escolhe **GitHub Actions**.
-
-O workflow `.github/workflows/deploy.yml` já está configurado: a cada push para `main`, o site faz build e publica automaticamente. Demora 1-2 minutos.
-
-O site fica em: `https://SEU-USUARIO.github.io/NOME-DO-REPO/`
-
----
+- **Astro 6** — gerador estático, zero JS por defeito
+- **`@astrojs/sitemap`** — sitemap.xml com hreflang i18n
+- **Anton** (display) + **JetBrains Mono** (body) + **DM Serif Display** (acentos serif italic)
+- **Cloudflare Web Analytics** (opcional, sem cookies, sem banner RGPD)
+- Sem framework UI, sem Tailwind, sem build pesado.
 
 ## Estrutura
 
 ```
 .
-├── astro.config.mjs           ← config do site/base
+├── astro.config.mjs
 ├── package.json
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   ├── llms.txt
+│   ├── llms-full.txt
+│   └── robots.txt
 ├── src/
-│   ├── components/            ← onde está o conteúdo
+│   ├── components/
+│   ├── i18n/ui.ts
 │   ├── layouts/Layout.astro
-│   ├── pages/index.astro      ← monta a página
-│   └── styles/global.css      ← design system (cores, fontes)
-└── .github/workflows/deploy.yml
+│   ├── pages/
+│   │   ├── index.astro            ← PT manifesto
+│   │   ├── about.astro            ← PT about & legal
+│   │   ├── print.astro            ← PT poster A3
+│   │   └── en/
+│   │       ├── index.astro
+│   │       ├── about.astro
+│   │       └── print.astro
+│   └── styles/global.css
+└── .github/
+    ├── ISSUE_TEMPLATE/new-axiom.yml
+    └── workflows/deploy.yml
 ```
 
-## Stack
+## Disclaimer
 
-- **Astro 4** — gerador estático, zero JS por padrão
-- **Google Fonts** — Anton (display), JetBrains Mono (body), DM Serif Display (acentos)
-- **Sem framework UI**, sem Tailwind, sem build pesado. Só HTML/CSS.
-
-Bom *deploy*.
+Sátira. Não é endossado pela OutSystems S.A. Ver [/about/](https://redeagle48.github.io/XGH-OutSystems/about/) para o disclaimer legal completo, marcas registadas e canal de takedown.

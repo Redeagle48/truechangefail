@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://redeagle48.github.io',
-  base: '/truechangefail',
+  base: '/XGH-OutSystems',
   i18n: {
     defaultLocale: 'pt',
     locales: ['pt', 'en'],

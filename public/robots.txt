@@ -1,9 +1,9 @@
-# TrueChangeFail — robots.txt
+# XGH-OS — robots.txt
 # Manifesto satírico, conteúdo público — todos os crawlers são bem-vindos.
-# Note: GitHub Pages serves this file at /truechangefail/robots.txt because the
+# Note: GitHub Pages serves this file at /XGH-OutSystems/robots.txt because the
 # project lives on a path-based deployment. Crawlers that look at the domain
 # root (redeagle48.github.io/robots.txt) will not see this. Move to a custom
-# domain (e.g. truechange.fail) to make this canonical.
+# domain (e.g. a custom domain) to make this canonical.
 
 User-agent: *
 Allow: /
@@ -54,4 +54,4 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://redeagle48.github.io/truechangefail/sitemap-index.xml
+Sitemap: https://redeagle48.github.io/XGH-OutSystems/sitemap-index.xml

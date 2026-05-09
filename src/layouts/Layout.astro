@@ -7,13 +7,23 @@ export interface Props {
   lang?: Locale;
   title?: string;
   description?: string;
-  pageKind?: 'manifesto' | 'about';
+  pageKind?: 'manifesto' | 'about' | 'print';
 }
 
 const { lang = defaultLocale, title, description, pageKind = 'manifesto' } = Astro.props;
 const t = getT(lang);
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
+
+// Derive the current page slug so canonical/hreflang point at the right
+// per-locale URL (instead of always the home).
+const baseHref = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+let pageSlug = Astro.url.pathname;
+if (baseHref && pageSlug.startsWith(baseHref)) pageSlug = pageSlug.slice(baseHref.length);
+if (pageSlug.startsWith('/en/')) pageSlug = pageSlug.slice(4);
+else if (pageSlug === '/en') pageSlug = '';
+else if (pageSlug.startsWith('/')) pageSlug = pageSlug.slice(1);
+if (pageSlug.endsWith('/')) pageSlug = pageSlug.slice(0, -1);
 
 const cfBeaconToken = import.meta.env.PROD
   ? import.meta.env.PUBLIC_CF_BEACON_TOKEN
@@ -23,9 +33,9 @@ const siteOrigin = Astro.site ?? new URL('/', Astro.url);
 const canonical = new URL(Astro.url.pathname, siteOrigin).toString();
 const hreflangs = locales.map((l) => ({
   hreflang: l === 'pt' ? 'pt-PT' : 'en',
-  href: new URL(getRelativeLocaleUrl(l, ''), siteOrigin).toString(),
+  href: new URL(getRelativeLocaleUrl(l, pageSlug), siteOrigin).toString(),
 }));
-const xDefault = new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString();
+const xDefault = new URL(getRelativeLocaleUrl(defaultLocale, pageSlug), siteOrigin).toString();
 
 const websiteId = `${new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString()}#website`;
 const articleId = `${canonical}#manifesto`;
@@ -42,10 +52,10 @@ const websiteNode = {
   '@type': 'WebSite',
   '@id': websiteId,
   url: new URL(getRelativeLocaleUrl(defaultLocale, ''), siteOrigin).toString(),
-  name: 'TrueChangeFail (TCF)',
-  alternateName: 'TCF',
+  name: 'XGH-OS',
+  alternateName: 'eXtreme Go Horse | OutSystems Edition',
   description:
-    'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings, published anyway.',
+    'Manifesto satírico sobre desenvolvimento OutSystems à pressa. 13 axiomas, 247 warnings, 1-CP anyway.',
   inLanguage: ['pt-PT', 'en'],
 };
 
@@ -111,9 +121,33 @@ const aboutGraph = [
   },
 ];
 
+const printGraph = [
+  websiteNode,
+  {
+    '@type': 'CreativeWork',
+    '@id': `${canonical}#printable`,
+    isPartOf: { '@id': websiteId },
+    url: canonical,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: t.htmlLang,
+    datePublished: '2026-05-09',
+    dateModified: '2026-05-09',
+    author: personPublisher,
+    publisher: personPublisher,
+    encodingFormat: 'text/html',
+    bookFormat: 'https://schema.org/Paperback',
+  },
+];
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@graph': pageKind === 'about' ? aboutGraph : manifestoGraph,
+  '@graph':
+    pageKind === 'about'
+      ? aboutGraph
+      : pageKind === 'print'
+      ? printGraph
+      : manifestoGraph,
 };
 ---
 <!doctype html>
@@ -133,7 +167,7 @@ const jsonLd = {
     <script is:inline set:html={`
 (function(){
   var html = document.documentElement;
-  function mark(k, v){ try { html.setAttribute("data-tcf-" + k, String(v)); } catch(_){} }
+  function mark(k, v){ try { html.setAttribute("data-xgh-os-" + k, String(v)); } catch(_){} }
   try {
     var ptRe = /^pt(-|$)/i;
     var docLang = html.lang || "en";
@@ -142,7 +176,7 @@ const jsonLd = {
     // Probe localStorage availability (Safari private mode, Brave shields, etc. throw on setItem).
     var lsOk = false;
     try {
-      var probe = "__tcf_probe__";
+      var probe = "__xgh_os_probe__";
       window.localStorage.setItem(probe, "1");
       window.localStorage.removeItem(probe);
       lsOk = true;
@@ -151,7 +185,7 @@ const jsonLd = {
 
     var pref = null;
     if (lsOk) {
-      try { pref = window.localStorage.getItem("tcf-lang"); } catch(e) {}
+      try { pref = window.localStorage.getItem("xgh-os-lang"); } catch(e) {}
     }
     var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
     mark("browser", browserLang);
@@ -159,7 +193,7 @@ const jsonLd = {
     if (!pref) {
       pref = ptRe.test(browserLang) ? "pt" : "en";
       if (lsOk) {
-        try { window.localStorage.setItem("tcf-lang", pref); } catch(e) {}
+        try { window.localStorage.setItem("xgh-os-lang", pref); } catch(e) {}
       }
     }
     mark("pref", pref);
@@ -200,7 +234,7 @@ const jsonLd = {
     <meta property="og:type" content="article" />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={t.htmlLang.replace('-', '_')} />
-    <meta property="og:site_name" content="TrueChangeFail" />
+    <meta property="og:site_name" content="XGH-OS" />
     <meta property="article:published_time" content="2026-05-08" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />

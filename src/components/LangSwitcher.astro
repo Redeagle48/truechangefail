@@ -26,7 +26,7 @@ if (slug.endsWith('/')) slug = slug.slice(0, -1);
       class:list={['lang-switcher__link', { 'is-active': loc === lang }]}
       aria-current={loc === lang ? 'page' : undefined}
       hreflang={loc}
-      onclick={`try{localStorage.setItem('tcf-lang','${loc}')}catch(e){}`}
+      onclick={`try{localStorage.setItem('xgh-os-lang','${loc}')}catch(e){}`}
     >
       {t[loc]}
     </a>

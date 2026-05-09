@@ -6,7 +6,15 @@ export interface Props {
 }
 
 const { lang = defaultLocale } = Astro.props;
-const t = getT(lang).hero;
+const tr = getT(lang);
+const t = tr.hero;
+const tickerLabel = lang === 'pt' ? 'Axioma' : 'Axiom';
+const tickerAria = lang === 'pt'
+  ? 'Axioma aleatório — atalho para o axioma destacado'
+  : 'Random axiom — shortcut to the highlighted axiom';
+const axioms = tr.manifesto.axioms.map((a, i) => ({ n: i + 1, title: a.title }));
+const initial = axioms[0];
+const pad2 = (n: number) => (n < 10 ? '0' + n : String(n));
 ---
 <header class="hero">
   <div class="shell">
@@ -16,9 +24,8 @@ const t = getT(lang).hero;
     </div>
 
     <h1 class="hero__title reveal reveal-2">
-      TRUE<br />
-      <span class="strike">change</span><br />
-      FAIL
+      XGH<br />
+      <span class="strike">-OS</span>
     </h1>
 
     <p class="hero__sub reveal reveal-3">
@@ -33,3 +40,81 @@ const t = getT(lang).hero;
     </div>
   </div>
 </header>
+
+<a
+  class="axiom-ticker"
+  href={`#axiom-${initial.n}`}
+  data-ticker
+  aria-live="polite"
+  aria-label={tickerAria}
+>
+  <span class="axiom-ticker__dot" aria-hidden="true"></span>
+  <span class="axiom-ticker__label">{tickerLabel}</span>
+  <span class="axiom-ticker__num" data-ticker-num>#{pad2(initial.n)}</span>
+  <span class="axiom-ticker__title" data-ticker-title>{initial.title}</span>
+  <span class="axiom-ticker__arrow" aria-hidden="true">→</span>
+</a>
+
+<script is:inline define:vars={{ axioms }}>
+(function () {
+  if (!Array.isArray(axioms) || axioms.length < 2) return;
+  var root = document.querySelector('[data-ticker]');
+  if (!root) return;
+  var numEl = root.querySelector('[data-ticker-num]');
+  var titleEl = root.querySelector('[data-ticker-title]');
+  if (!numEl || !titleEl) return;
+
+  var reduceMotion = false;
+  try {
+    reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (_) {}
+
+  var rotateMs = reduceMotion ? 9000 : 5000;
+  var fadeMs = reduceMotion ? 0 : 220;
+
+  var lastIdx = -1;
+  var intervalId = null;
+  function pick() {
+    var i;
+    do { i = Math.floor(Math.random() * axioms.length); } while (i === lastIdx);
+    lastIdx = i;
+    return i;
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function apply(i) {
+    var a = axioms[i];
+    numEl.textContent = '#' + pad(a.n);
+    titleEl.textContent = a.title;
+    root.setAttribute('href', '#axiom-' + a.n);
+  }
+  function show(i) {
+    if (fadeMs > 0) {
+      root.classList.add('is-fading');
+      setTimeout(function () {
+        apply(i);
+        root.classList.remove('is-fading');
+      }, fadeMs);
+    } else {
+      apply(i);
+    }
+  }
+  function start() {
+    stop();
+    intervalId = setInterval(function () { show(pick()); }, rotateMs);
+  }
+  function stop() {
+    if (intervalId !== null) { clearInterval(intervalId); intervalId = null; }
+  }
+
+  apply(pick());
+  start();
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focus', stop);
+  root.addEventListener('blur', start);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+})();
+</script>

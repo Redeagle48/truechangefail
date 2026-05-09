@@ -10,13 +10,15 @@ const { lang = defaultLocale } = Astro.props;
 const t = getT(lang).footer;
 const year = new Date().getFullYear();
 const aboutHref = getRelativeLocaleUrl(lang, 'about');
+const printHref = getRelativeLocaleUrl(lang, 'print');
 ---
 <footer class="footer">
   <div class="shell">
     <div class="footer__row">
-      <div class="footer__brand">truechange.fail</div>
+      <div class="footer__brand">XGH-OS</div>
       <div>{year} · {t.tagline}</div>
       <div class="footer__links">
+        <a href={printHref}>{t.printLink}</a>
         <a href={aboutHref}>{t.aboutLink}</a>
         <a href="#top">{t.backToTop}</a>
       </div>

@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getT, type Locale } from '../../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const lang: Locale = 'en';
+const t = getT(lang);
+const p = t.print;
+const home = getRelativeLocaleUrl(lang, '');
+const altPrint = getRelativeLocaleUrl('pt', 'print');
+const pad = (n: number) => (n < 10 ? '0' + n : String(n));
+---
+<Layout
+  lang={lang}
+  pageKind="print"
+  title={p.meta.title}
+  description={p.meta.description}
+>
+  <nav class="print-toolbar" aria-label="Print actions">
+    <a href={home} class="print-toolbar__link">{p.toolbar.back}</a>
+    <button class="print-toolbar__btn" type="button" id="print-btn">
+      <span aria-hidden="true">🖨</span> {p.toolbar.print}
+    </button>
+    <a href={altPrint} class="print-toolbar__link">{p.toolbar.switchLang}</a>
+  </nav>
+  <p class="print-toolbar__hint">{p.toolbar.hint}</p>
+
+  <div class="poster-stage">
+    <article class="poster" lang={t.htmlLang}>
+      <header class="poster__head">
+        <span>{p.header.left}</span>
+        <span>{p.header.right}</span>
+      </header>
+
+      <div class="poster__brand">
+        <h1 class="poster__brand-title">
+          <span class="poster__brand-line">XGH</span>
+          <span class="poster__brand-line poster__brand-strike">-OS</span>
+        </h1>
+        <aside class="poster__brand-aside">
+          <p class="poster__tagline">{p.tagline}</p>
+          <p class="poster__brand-sub">{p.sub}</p>
+          <div class="poster__stamp" aria-hidden="true">
+            <span>1-CP</span>
+            <span>ANYWAY</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="poster__divider">
+        <span class="poster__divider-title">{p.divider.title}</span>
+        <span class="poster__divider-meta">{p.divider.meta}</span>
+      </div>
+
+      <ol class="poster__axioms">
+        {t.manifesto.axioms.map((a, i) => (
+          <li class="poster__axiom">
+            <span class="poster__axiom-num">{pad(i + 1)}</span>
+            <h2 class="poster__axiom-title">{a.title}</h2>
+            <p class="poster__axiom-body">{a.body}</p>
+          </li>
+        ))}
+      </ol>
+
+      <footer class="poster__foot">
+        <span>{p.footer.left}</span>
+        <span class="poster__foot-center">{p.footer.center}</span>
+        <span>{p.footer.right}</span>
+      </footer>
+    </article>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('print-btn');
+      if (btn) btn.addEventListener('click', function () { window.print(); });
+    });
+  </script>
+</Layout>
